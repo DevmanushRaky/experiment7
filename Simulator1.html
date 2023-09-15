@@ -1,0 +1,265 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-4bw+/aepP/YC94hEpVNVgiZdgIC5+VKNBQNGCHeKRQN+PtmoHDEXuppvnDJzQIu9" crossorigin="anonymous">
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.10.2/dist/umd/popper.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <title>Simulator 1</title>
+
+    <style>
+        a {
+            text-decoration: none;
+        }
+
+        ul {
+            list-style-type: none;
+            /* Remove bullets */
+        }
+
+        img {
+            width: 100px;
+            height: 100px;
+            margin: 2px;
+        }
+    </style>
+
+</head>
+
+<body>
+    <button type="button" class="btn btn-outline-info  mx-2 my-2"><a href="index.html"> Go to main page</a></button>
+    <button type="button" class="btn btn-outline-info  m-3"><a href="index.html">Back </a></button>
+    <button type="button" class="btn btn-outline-info  m-3"><a href="Simulator2.html">Next </a></button>
+    <h2 class="d-flex justify-content-center align-items-center">Match the cast irons with their respective
+        microstructures and applications.</h2>
+
+
+    <div class="container">
+        <div class="row">
+            <div class="col-md-4 col-sm-12">
+                <h4> Type </h4>
+                <ul id="ironTypes">
+                    <li>
+                        <button type="button" class="btn btn-outline-success" id="whitecast">White cast iron</button>
+                    </li>
+                    <li>
+                        <button type="button" class="btn btn-outline-success" id="greycast">Grey cast iron</button>
+                    </li>
+                    <li>
+                        <button type="button" class="btn btn-outline-success" id="ductilecast">Ductile cast
+                            iron</button>
+                    </li>
+                    <li>
+                        <button type="button" class="btn btn-outline-success" id="malleablecast">Malleable cast
+                            iron</button>
+                    </li>
+                    <li>
+                        <button type="button" class="btn btn-outline-success" id="compactcast">Compact cast
+                            iron</button>
+                    </li>
+                </ul>
+            </div>
+
+            <div class="col-md-4 col-sm-12">
+                <h4> Microstructures </h4>
+                <ul id="microstructures">
+                    <li>
+                        <img src="./images/whitecastiron.jpg" alt="whitecastiron" id="white-m" />
+                    </li>
+                    <li>
+                        <img src="./images/greycastiron.jpg" alt="greycastiron" id="grey-m" />
+                    </li>
+                    <li>
+                        <img src="./images/ductilecstiron.jpg" alt="ductilecastiron" id="ductile-m" />
+                    </li>
+                    <li>
+                        <img src="./images/malleablecastiron.jpg" alt="malleablecastiron" id="malleable-m" />
+                    </li>
+                    <li>
+                        <img src="./images/compactcastiron.jpg" alt="compactcastiron" id="compact-m" />
+                    </li>
+                </ul>
+            </div>
+            <div class="col-md-4 col-sm-12">
+                <h4> Applications </h4>
+                <ul id="applications">
+                    <li>
+                        <img src="./images/whitecastironapp.jpg" alt="whitecastironapplication " id="white-app" />
+                    </li>
+                    <li>
+                        <img src="./images/greycastironapp.jpg" alt="greycastironapplication" id="grey-app" />
+                    </li>
+                    <li>
+                        <img src="./images/ductilecstironapp.jpg" alt="ductilecastironapplication" id="ductile-app" />
+                    </li>
+                    <li>
+                        <img src="./images/malleablecastironapp.jpg" alt="malleablecastironapplication"
+                            id="malleable-app" />
+                    </li>
+                    <li>
+                        <img src="./images/compactcastironapp.jpg" alt="compactcastironapplication" id="compact-app" />
+                    </li>
+                </ul>
+            </div>
+
+        </div>
+    </div>
+
+
+
+
+    <!-- Modal  -->
+    <!-- <div class="modal fade" id="quizCompletedModal" tabindex="-1" aria-labelledby="quizCompletedModalLabel"
+        aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="quizCompletedModalLabel">Quiz Completed</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    Congratulations! You have completed the quiz.
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" onclick="location.reload()">Restart Quiz</button>
+                   
+                </div>
+            </div>
+        </div>
+    </div> -->
+
+
+    <!-- Modal for Correct Match -->
+    <div class="modal fade" id="correctMatchModal" tabindex="-1" aria-labelledby="correctMatchModalLabel"
+        aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="correctMatchModalLabel">Correct Match</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    Congratulations! You have made the correct match.
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" onclick="location.reload()"> ok </button>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- Modal for Error Match -->
+    <div class="modal fade" id="errorMatchModal" tabindex="-1" aria-labelledby="errorMatchModalLabel"
+        aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="errorMatchModalLabel">Error</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    Please choose correct microstructure and application images.
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" onclick="location.reload()"> ok </button>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- Modal for Missing type -->
+    <div class="modal fade" id="errorTypeModal" tabindex="-1" aria-labelledby="errorMatchModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="errorMatchModalLabel">Error</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    Please choose a type first, and then select the correct microstructure and application images.
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" onclick="location.reload()"> ok </button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+    <script>
+        // Define an object to store correct answers for each type of cast iron
+        const correctAnswers = {
+            'whitecast': { microstructure: 'white-m', application: 'white-app' },
+            'greycast': { microstructure: 'grey-m', application: 'grey-app' },
+            'ductilecast': { microstructure: 'ductile-m', application: 'ductile-app' },
+            'malleablecast': { microstructure: 'malleable-m', application: 'malleable-app' },
+            'compactcast': { microstructure: 'compact-m', application: 'compact-app' },
+        };
+
+        let selectedType = null; // Store the currently selected iron type
+        let selectedMicrostructure = null; // Store the selected microstructure
+        let selectedApplication = null; // Store the selected application
+
+        // Add click event listeners to the buttons
+        const buttons = document.querySelectorAll('.btn-outline-success');
+        buttons.forEach(button => {
+            button.addEventListener('click', () => {
+                // Store the selected iron type
+                selectedType = button.id;
+
+                // Deselect all buttons
+                buttons.forEach(b => b.classList.remove('selected'));
+
+                // Select the clicked button
+                button.classList.add('selected');
+                console.log('selected type = ', selectedType)
+            });
+        });
+
+        // Add click event listeners to the microstructure and application images
+        const images = document.querySelectorAll('img');
+        images.forEach(image => {
+            image.addEventListener('click', () => {
+                // Check if a type is selected
+                if (selectedType) {
+                    // Check if a microstructure is selected
+                    if (!selectedMicrostructure) {
+                        selectedMicrostructure = image.id;
+                        console.log("setting microstructure image =", selectedMicrostructure)
+                    } else if (!selectedApplication) { // Check if an application is selected
+                        selectedApplication = image.id;
+                        console.log("setting application image =", selectedApplication)
+
+                        // Check if it's a correct match
+                        if (
+                            selectedMicrostructure === correctAnswers[selectedType].microstructure &&
+                            selectedApplication === correctAnswers[selectedType].application
+                        ) {
+                            // Show the modal for correct match
+                            $('#correctMatchModal').modal('show');
+                        } else {
+                            // Show the modal for error match
+                            $('#errorMatchModal').modal('show');
+                        }
+
+                        // Reset selections
+                        selectedType = null;
+                        selectedMicrostructure = null;
+                        selectedApplication = null;
+                        buttons.forEach(b => b.classList.remove('selected'));
+                    }
+                } else {
+                    // Show the modal for error match (type not selected)
+                    $('#errorTypeModal').modal('show');
+                }
+            });
+        });
+
+    </script>
+
+</body>
+
+</html>
