@@ -17,6 +17,13 @@
             text-decoration: none;
         }
 
+        #whitecast,#greycast,#ductilecast,#malleablecast,#compactcast {
+            border: none;
+            padding: 18px;
+            font-size: 23px;
+        }
+        
+
         .type-button {
             display: flex;
             justify-content: center;
@@ -31,11 +38,18 @@
         }
 
         img {
-            width: 250px;
-            height: 125px;
-            /* width: 100%; */
-            /* height: auto; */
+            width: 439px;
+            height: 300px;
+            /* width: 100%;
+            height: auto; */
             margin: 5px;
+        }
+
+        .application-name {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            font-weight: 500;
         }
 
         .highlighted-img {
@@ -55,20 +69,20 @@
         microstructures and applications.</h2>
 
 
-    <div class="container">
+    <div class="container ">
         <div class="row">
             <!-- Type 1 -->
             <div class="col-md-4 col-sm-12 type-button">
-               <h4> Type of cast iron </h4>
+                <h3> Type of cast iron </h3>
             </div>
             <!-- Microstructure 1 -->
             <div class="col-md-4 col-sm-12">
-                <h4> Microstructures </h4>
-                
+                <h3> Microstructures </h3>
+
             </div>
             <!-- Application 1 -->
             <div class="col-md-4 col-sm-12">
-                <h4> Applications </h4>
+                <h3> Applications </h3>
             </div>
         </div>
         <div class="row">
@@ -83,6 +97,7 @@
             <!-- Application 1 -->
             <div class="col-md-4 col-sm-12">
                 <img src="./images/whitecastironapp.jpg" alt="whitecastironapplication " id="white-app" />
+                <p class="application-name">Iron based grinding media for ball mill</p>
             </div>
         </div>
 
@@ -98,6 +113,7 @@
             <!-- Application 2 -->
             <div class="col-md-4 col-sm-12">
                 <img src="./images/ductilecstironapp.jpg" alt="ductilecastironapplication" id="ductile-app" />
+                <p class="application-name">Iron pipes used for water transport</p>
             </div>
         </div>
 
@@ -113,6 +129,7 @@
             <!-- Application 3 -->
             <div class="col-md-4 col-sm-12">
                 <img src="./images/greycastironapp.jpg" alt="greycastironapplication" id="grey-app" />
+                <p class="application-name">Machinery Gears</p>
             </div>
         </div>
 
@@ -128,6 +145,7 @@
             <!-- Application 4 -->
             <div class="col-md-4 col-sm-12">
                 <img src="./images/compactcastironapp.jpg" alt="compactcastironapplication" id="compact-app" />
+                <p class="application-name">Diesel engine block</p>
             </div>
         </div>
 
@@ -143,11 +161,12 @@
             <!-- Application 5 -->
             <div class="col-md-4 col-sm-12">
                 <img src="./images/malleablecastironapp.jpg" alt="malleablecastironapplication" id="malleable-app" />
+                <p class="application-name">Washers</p>
             </div>
         </div>
 
     </div>
-   
+
 
 
 
@@ -161,7 +180,7 @@
             <div class="modal-content">
                 <div class="modal-header">
                     <h5 class="modal-title" id="correctMatchModalLabel">Correct Match</h5>
-                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                    <!-- <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button> -->
                 </div>
                 <div class="modal-body">
                     Congratulations! Quiz Completed.
@@ -179,7 +198,7 @@
             <div class="modal-content">
                 <div class="modal-header">
                     <h5 class="modal-title" id="correctMatchModalLabel">Correct Match</h5>
-                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                    <!-- <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button> -->
                 </div>
                 <div class="modal-body">
                     Congratulations! You have made the correct match.
@@ -197,7 +216,7 @@
             <div class="modal-content">
                 <div class="modal-header">
                     <h5 class="modal-title" id="errorMatchModalLabel">Error</h5>
-                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                    <!-- <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button> -->
                 </div>
                 <div class="modal-body">
                     Please choose correct microstructure and application images.
@@ -214,7 +233,7 @@
             <div class="modal-content">
                 <div class="modal-header">
                     <h5 class="modal-title" id="errorMatchModalLabel">Error</h5>
-                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                    <!-- <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button> -->
                 </div>
                 <div class="modal-body">
                     Please choose a type first, and then select the correct microstructure and application images.
