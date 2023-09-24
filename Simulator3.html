@@ -32,7 +32,8 @@
             margin-top: 5px;
             color: #722F37;
         }
-        #submitBtn{
+
+        #submitBtn,#incrementBtn,#decrementBtn {
             border: none;
             background-color: #722F37;
         }
@@ -96,9 +97,11 @@
                     <img src="s3img/OptionF.png" class="option-img" alt="Option F" data-option="F">
                     <img src="s3img/OptionG.png" class="option-img" alt="Option G" data-option="G">
                 </div>
-                <label for="customRange2" class="form-label">Using the slider and thresholding. determine the
-                    concentration of ledeburite verses pearlite in hypoeutectic micrograph. </label>
-                <input type="range" class="form-range" min="0" max="6" id="customRange2" value="0">
+                <div class="d-flex justify-content-between m-2">
+                    <button type="button" class="btn btn-primary" id="decrementBtn">-</button>
+                    <input type="range" class="form-range" min="0" max="6" id="customRange2" value="0">
+                    <button type="button" class="btn btn-primary" id="incrementBtn">+</button>
+                </div>
 
                 <!-- Option Details -->
                 <div id="option-details">
@@ -152,7 +155,8 @@
                             <label for="pearliteFraction">Enter Vol. fraction of pearlite phase:</label>
                             <input type="text" class="form-control" id="pearliteFraction" placeholder="e.g., 15.66"
                                 required autocomplete="off">
-                            <small class="form-text text-muted">Please enter a number with a decimal point without including "%".</small>
+                            <small class="form-text text-muted">Please enter a number with a decimal point without
+                                including "%".</small>
                         </div>
                         <button type="submit" class="btn btn-primary" id="submitBtn">Submit</button>
 
@@ -352,6 +356,37 @@
         // Add an event listener to the form for form submission
         const form = document.getElementById('pearliteForm');
         form.addEventListener('submit', handleFormSubmit);
+
+
+
+
+        // code for change slider 
+        // Function to handle decrement button click
+        function handleDecrementClick() {
+            const rangeInput = document.getElementById('customRange2');
+            const currentValue = parseFloat(rangeInput.value);
+            if (currentValue > 0) {
+                rangeInput.value = (currentValue - 1).toString();
+                handleRangeChange();
+            }
+        }
+
+        // Function to handle increment button click
+        function handleIncrementClick() {
+            const rangeInput = document.getElementById('customRange2');
+            const currentValue = parseFloat(rangeInput.value);
+            if (currentValue < 6) {
+                rangeInput.value = (currentValue + 1).toString();
+                handleRangeChange();
+            }
+        }
+
+        // Add event listeners to the buttons
+        const decrementBtn = document.getElementById('decrementBtn');
+        const incrementBtn = document.getElementById('incrementBtn');
+        decrementBtn.addEventListener('click', handleDecrementClick);
+        incrementBtn.addEventListener('click', handleIncrementClick);
+
 
         // Initial setup
         handleRangeChange();
