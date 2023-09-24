@@ -28,8 +28,38 @@
             padding: 5px;
         }
 
+        .img-caption {
+            margin-top: 5px;
+            color: #722F37;
+        }
+        #submitBtn{
+            background-color: #722F37;
+        }
+
         p {
             margin-bottom: 0;
+        }
+
+        /* Change the color of the range slider track */
+        input[type="range"]::-webkit-slider-runnable-track {
+            background-color: #722F37;
+            /* Change to your desired color */
+        }
+
+        input[type="range"]::-moz-range-progress {
+            background-color: #722F37;
+            /* Change to your desired color */
+        }
+
+        /* Change the color of the slider thumb */
+        input[type="range"]::-webkit-slider-thumb {
+            background-color: #e74c3c;
+            /* Change to your desired color */
+        }
+
+        input[type="range"]::-moz-range-thumb {
+            background-color: #e74c3c;
+            /* Change to your desired color */
         }
     </style>
 </head>
@@ -49,11 +79,13 @@
                 estimate for the fraction of pearlite?
             </h5>
             <div class="col-md-6">
+                <h5 class="img-caption">Microstructure</h5>
                 <img src="s3img/Original.jpg" alt="Original Image" class="original-image" />
             </div>
 
             <div class="col-md-6">
 
+                <h5 class="img-caption">Predicted Threshold Microstructure</h5>
                 <!-- Options -->
                 <div id="options">
                     <img src="s3img/OptionA.png" class="option-img" alt="Option A" data-option="A">
@@ -64,51 +96,67 @@
                     <img src="s3img/OptionF.png" class="option-img" alt="Option F" data-option="F">
                     <img src="s3img/OptionG.png" class="option-img" alt="Option G" data-option="G">
                 </div>
-                <label for="customRange2" class="form-label">Using the slider and thresholding. determine the concentration of ledeburite verses pearlite in hypoeutectic micrograph. </label>
+                <label for="customRange2" class="form-label">Using the slider and thresholding. determine the
+                    concentration of ledeburite verses pearlite in hypoeutectic micrograph. </label>
                 <input type="range" class="form-range" min="0" max="6" id="customRange2" value="0">
 
                 <!-- Option Details -->
                 <div id="option-details">
                     <!-- Option A details -->
                     <div id="option-A-details">
-                        <p class="num-values">Threshold pixel: 149</p>
-                        <p class="num-values">Vol.% of black region: 16.60%</p>
+                        <p class="num-values">Threshold pixel: 152</p>
+                        <p class="num-values">Vol. fraction of pearlite phase: 10.11%</p>
                     </div>
 
                     <!-- Option B details -->
                     <div id="option-B-details">
-                        <p class="num-values">Threshold pixel: 96</p>
-                        <p class="num-values">Vol.% of black region: 48.96%</p>
+                        <p class="num-values">Threshold pixel: 149</p>
+                        <p class="num-values">Vol. fraction of pearlite phase: 16.60%</p>
                     </div>
 
                     <!-- Option C details -->
                     <div id="option-C-details">
-                        <p class="num-values">Threshold pixel: 62</p>
-                        <p class="num-values">Vol.% of black region: 64.51%</p>
+                        <p class="num-values">Threshold pixel: 144</p>
+                        <p class="num-values">Vol. fraction of pearlite phase: 24.91%</p>
                     </div>
 
                     <!-- Option D details -->
                     <div id="option-D-details">
                         <p class="num-values">Threshold pixel: 120</p>
-                        <p class="num-values">Vol.% of black region: 39.36%</p>
+                        <p class="num-values">Vol. fraction of pearlite phase: 39.36%</p>
                     </div>
 
                     <!-- Option E details -->
                     <div id="option-E-details">
-                        <p class="num-values">Threshold pixel: 152</p>
-                        <p class="num-values">Vol.% of black region: 10.11%</p>
+                        <p class="num-values">Threshold pixel: 96</p>
+                        <p class="num-values">FracVol. fraction of pearlite phasetion: 48.96%</p>
                     </div>
 
                     <!-- Option F details -->
                     <div id="option-F-details">
-                        <p class="num-values">Threshold pixel: 41</p>
-                        <p class="num-values">Vol.% of black region: 78.88%</p>
+                        <p class="num-values">Threshold pixel: 62</p>
+                        <p class="num-values">Vol. fraction of pearlite phase: 64.51%</p>
                     </div>
                     <!-- Option G details -->
                     <div id="option-G-details">
-                        <p class="num-values">Threshold pixel: 144</p>
-                        <p class="num-values">Vol.% of black region: 24.91%</p>
+                        <p class="num-values">Threshold pixel: 41</p>
+                        <p class="num-values">Vol. fraction of pearlite phase: 78.88%</p>
                     </div>
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="col-md-6 col-sm-12">
+                    <form id="pearliteForm" class="my-3">
+                        <div class="form-group">
+                            <label for="pearliteFraction">Enter Vol. fraction of pearlite phase:</label>
+                            <input type="text" class="form-control" id="pearliteFraction" placeholder="e.g., 15.66"
+                                required autocomplete="off">
+                            <small class="form-text text-muted">Please enter a number with a decimal point without including "%".</small>
+                        </div>
+                        <button type="submit" class="btn btn-primary" id="submitBtn">Submit</button>
+
+                    </form>
                 </div>
             </div>
         </div>
@@ -170,8 +218,6 @@
 
 
 
-
-    <!-- Working for only A -->
     <script>
         // Function to show/hide option details based on selected option
         function showOption(option) {
@@ -256,28 +302,57 @@
         const rangeInput = document.getElementById('customRange2');
         rangeInput.addEventListener('input', handleRangeChange);
 
-        // Event listeners for option image clicks
-        const optionImages = document.querySelectorAll('.option-img');
-        optionImages.forEach((img) => {
-            img.addEventListener('click', function () {
-                const option = img.getAttribute('data-option');
-                const selectedOption = rangeInput.value;
+        // Event listeners for option image clicks for matching 
+        // const optionImages = document.querySelectorAll('.option-img');
+        // optionImages.forEach((img) => {
+        //     img.addEventListener('click', function () {
+        //         const option = img.getAttribute('data-option');
+        //         const selectedOption = rangeInput.value;
 
-                if (option === "C" && selectedOption === "2") {
-                    // Show the correct modal
-                    // $('#correctModal').modal('show');
-                    // Show the quiz completed modal
-                    const quizCompletedModal1 = new bootstrap.Modal(document.getElementById('correctModal'));
-                    quizCompletedModal1.show();
-                } else {
-                    // Show the incorrect modal
-                    // $('#incorrectModal').modal('show');
-                    // Show the quiz completed modal
-                    const quizCompletedModal2 = new bootstrap.Modal(document.getElementById('incorrectModal'));
-                    quizCompletedModal2.show();
-                }
-            });
-        });
+        //         if (option === "C" && selectedOption === "2") {
+        //             // Show the correct modal
+        //             // $('#correctModal').modal('show');
+        //             // Show the quiz completed modal
+        //             const quizCompletedModal1 = new bootstrap.Modal(document.getElementById('correctModal'));
+        //             quizCompletedModal1.show();
+        //         } else {
+        //             // Show the incorrect modal
+        //             // $('#incorrectModal').modal('show');
+        //             // Show the quiz completed modal
+        //             const quizCompletedModal2 = new bootstrap.Modal(document.getElementById('incorrectModal'));
+        //             quizCompletedModal2.show();
+        //         }
+        //     });
+        // });
+
+
+        // code for match the input fields values 
+        // Function to handle form submission
+        function handleFormSubmit(event) {
+            event.preventDefault(); // Prevent the form from actually submitting
+
+            // Get the user-entered fraction from the input field
+            const enteredFraction = parseFloat(document.getElementById('pearliteFraction').value);
+
+            // Define the correct fraction value
+            const correctFraction = 64.51;
+
+            // Check if the entered fraction matches the correct fraction
+            if (Math.abs(enteredFraction - correctFraction) < 0.01) {
+                // Show the correct modal
+                const quizCompletedModal1 = new bootstrap.Modal(document.getElementById('correctModal'));
+                quizCompletedModal1.show();
+            } else {
+                // Show the incorrect modal
+                const quizCompletedModal2 = new bootstrap.Modal(document.getElementById('incorrectModal'));
+                quizCompletedModal2.show();
+            }
+        }
+
+        // Add an event listener to the form for form submission
+        const form = document.getElementById('pearliteForm');
+        form.addEventListener('submit', handleFormSubmit);
+
         // Initial setup
         handleRangeChange();
     </script>
