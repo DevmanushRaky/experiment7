@@ -16,6 +16,72 @@
         a {
             text-decoration: none;
         }
+
+        .container {
+
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .right-side {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            /* margin-top: 10px; */
+            padding: 80px;
+            font-size: 18px;
+            margin-left: 15px;
+        }
+
+
+
+        /* Update CSS for each point's information box (you can adjust these values based on your preferences) */
+
+
+        .pointphoto {
+            width: 300px;
+            height: 300px;
+        }
+
+
+        #options {
+            list-style: none;
+            /* Remove bullets */
+            padding: 0;
+            /* Remove default padding */
+            display: grid;
+            grid-template-columns: repeat(1, 1fr);
+            /* Two columns */
+            gap: 8px;
+            /* Spacing between buttons */
+        }
+
+        #options li button {
+            display: block;
+            padding: 6px 8px;
+            background-color: white;
+            color: #0dcaf0;
+            border: #0dcaf0 1px solid;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: background-color 0.3s ease, transform 0.2s ease;
+            width: 100%;
+        }
+
+        #options li button:hover {
+            background-color: #0dcaf0;
+            color: #0d6efd;
+        }
+
+        #options li button:active {
+            background-color: #0dcaf0;
+            transform: translateY(2px);
+        }
+
+        #question {
+            font-weight: bold;
+        }
     </style>
 
 </head>
@@ -29,25 +95,57 @@
 
     <div class="container">
         <div class="row">
-            <div class="col-md-12">
-              <h1> This section will update soon  </h1>
-           
-            </div>
+            <div class="col-md-8 ">
 
+                <img src="images/Steel part of cp diagram dotted simulator 2 img.png" alt="Graph" usemap="#graphMap">
+                <map name="graphMap">
+                    <!-- Define clickable points with coordinates and title (name) -->
+                    <area alt="1" title="1" href="#" coords="201,135,10" shape="circle">
+                    <area alt="2" title="2" href="#" coords="203,271,10" shape="circle">
+                    <area alt="3" title="3" href="#" coords="200,301,10" shape="circle">
+                    <area alt="4" title="4" href="#" coords="200,442,10" shape="circle">
+                    <area alt="5" title="5" href="#" coords="413,272,10" shape="circle">
+                    <area alt="6" title="6" href="#" coords="413,443,10" shape="circle">
+                    <area alt="7" title="7" href="#" coords="594,134,10" shape="circle">
+                    <area alt="8" title="8" href="#" coords="594,270,10" shape="circle">
+                    <area alt="9" title="9" href="#" coords="598,446,10" shape="circle">
+                </map>
+
+            </div>
+            <div class="col-md-4">
+                <!--  Showing aflter click  -->
+                <div class="right-side">
+                    <!-- <i class="fa fa-close d-flex justify-content-end" style="font-size:24px"onclick="hideInfo()"></i> -->
+                    <div class="info-box">
+                        <p id="pointText"> Click on graph point for more details.</p>
+                        <div id="quiz" style="display: none;">
+                            <img id="pointImage" src="" alt="Click on graph point to see image" class="pointphoto">
+                            <p id="question"></p>
+                            <ul id="options">
+                                <li><button onclick="checkAnswer(0)">Option 1</button></li>
+                                <li><button onclick="checkAnswer(1)">Option 2</button></li>
+                                <li><button onclick="checkAnswer(2)">Option 3</button></li>
+                                <li><button onclick="checkAnswer(3)">Option 4</button></li>
+                            </ul>
+                            <p id="result"></p>
+                        </div>
+                    </div>
+
+                </div>
+
+            </div>
         </div>
+
     </div>
 
 
-
-
-  <!-- Modal  -->
     <div class="modal fade" id="quizCompletedModal" tabindex="-1" aria-labelledby="quizCompletedModalLabel"
         aria-hidden="true">
         <div class="modal-dialog">
             <div class="modal-content">
                 <div class="modal-header">
                     <h5 class="modal-title" id="quizCompletedModalLabel">Quiz Completed</h5>
-                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                    <!-- <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button> -->
                 </div>
                 <div class="modal-body">
                     Congratulations! You have completed the quiz.
@@ -60,6 +158,193 @@
     </div>
 
 
+    <script>
+        const points = [
+            {
+                imageUrl: "images/point1.png",
+                text: "Point 1: Please select correct option .",
+                questionIndex: 0
+            },
+            {
+                imageUrl: "images/point2.png",
+                text: "Point 2 : Please select correct option .",
+                questionIndex: 1
+            },
+            {
+                imageUrl: "images/point3.png",
+                text: "Point 3 : Please select correct option .",
+                questionIndex: 2
+            },
+            {
+                imageUrl: "images/point4.png",
+                text: "Point 4 : Please select correct option .",
+                questionIndex: 3
+            },
+            {
+                imageUrl: "images/point5.png",
+                text: "Point 5 : Please select correct option .",
+                questionIndex: 4
+            },
+            {
+                imageUrl: "images/point6.png",
+                text: "Point 6 : Please select correct option .",
+                questionIndex: 5
+            },
+            {
+                imageUrl: "images/point7.png",
+                text: "Point 7 : Please select correct option .",
+                questionIndex: 6
+            },
+
+            {
+                imageUrl: "images/point8.png",
+                text: "Point 8 : Please select correct option .",
+                questionIndex: 7
+            },
+
+            {
+                imageUrl: "images/point9.png",
+                text: "Point 9 : Please select correct option .",
+                questionIndex: 8
+            },
+
+
+            // Add more points here...
+        ];
+
+        const questions = [
+            {
+                question: "What  are the different microstructural phases shown in white and pink colour, respectively?",
+                options: ["Liquid and Austenite", "Cementite and Austenite", "Pearlite and Martensite", "Ferrite and Pearlite"],
+                correctIndex: 0,
+                feedback: "You are correct!"
+            },
+            {
+                question: "What  are the different microstructural phases shown in pink and black-yellow mix matrix colour, respectively?",
+                options: ["Cementite and Austenite ", "Austenite and ledeburite", "Pearlite and Martensite", "Ferrite and Pearlite"],
+                correctIndex: 1,
+                feedback: "You are correct!"
+            },
+            {
+                question: "What  are the different microstructural phases shown in pink and black-yellow mix matrix colour, respectively?",
+                options: ["Cementite and Pearlite", "Pearlite and Martensite", "Broken Austenitic dendrite and Ledeburite", "Ferrite and Pearlite"],
+                correctIndex: 2,
+                feedback: "You are correct!"
+            },
+            {
+                question: "What  are the different microstructural phases shown in broken blue and green-yellow mix matrix colour, respectively?",
+                options: ["Ferrite and Pearlite", "Broken Pearlitic dendrite and Ledeburite", "Pearlite and Martensite", "Cementite and Austenite"],
+                correctIndex: 1,
+                feedback: "You are correct!"
+            },
+            {
+                question: "What is the microstructural phase shown below?",
+                options: ["Pearlite ", "Eutectoid ledeburite", "Eutectic Ledeburite", "Transformed Ledeburite"],
+                correctIndex: 2,
+                feedback: "You are correct!"
+            },
+            {
+                question: "What is the microstructural phase shown below?",
+                options: ["Transformed Ledeburite", "Austenite", "Pearlite", "Martensite"],
+                correctIndex: 0,
+                feedback: "You are correct!"
+            },
+            {
+                question: "What are the different microstructural phases shown in white and blue colours, respectively?",
+                options: ["Ferrite and Pearlite", "Ledeburite and Broken Pearlitic dendrite", "Liquid and Primary cementite", "Pearlite and Martensite"],
+                correctIndex: 3,
+                feedback: "You are correct!"
+            },
+            {
+                question: "What are the different microstructural phases shown in blue, black-yellow mix matrix, respectively?",
+                options: ["Primary Cementite and Ledeburite", "Pearlite and Martensite ", "Ledeburite and Broken Pearlitic dendrite", "Ferrite and Pearlite"],
+                correctIndex: 0,
+                feedback: "You are correct!"
+            },
+            {
+                question: "What are the different microstructural phases present in the microstructure shown in blue, green-yellow colours, respectively?",
+                options: ["Austenite and  Transformed Ledeburite", "Eutectic Ledeburite and Austenite", "Primary cementite and Transformed Ledeburite", "Pearlite and Austenite"],
+                correctIndex: 2,
+                feedback: "You are correct!"
+            }
+
+
+            // Add more questions here...
+        ];
+
+
+        let currentPointIndex = 0; // Track the current point being processed
+        let currentQuestionIndex = 0; // Track the current question index
+
+
+
+        // Function to display the quiz for a specific point
+        function showQuizForPoint(pointIndex) {
+            const point = points[pointIndex];
+            const quizContainer = document.getElementById('quiz');
+            const questionElement = document.getElementById('question');
+            const optionsList = document.getElementById('options');
+            const resultElement = document.getElementById('result');
+
+
+
+            // Set the image source and text content
+            pointImage.src = point.imageUrl;
+            pointText.textContent = point.text;
+
+            // Display the quiz
+            quizContainer.style.display = 'block';
+
+            // Display the current question
+            const question = questions[point.questionIndex];
+            questionElement.textContent = question.question;
+
+            // Display the options
+            optionsList.innerHTML = question.options.map((option, index) => {
+                return `<li><button onclick="checkAnswer(${index})">${option}</button></li>`;
+            }).join('');
+
+            // Clear previous result
+            resultElement.textContent = '';
+        }
+
+        // Function to proceed to the next point and start quiz
+        function nextPoint() {
+            currentPointIndex++;
+            if (currentPointIndex < points.length) {
+                showQuizForPoint(currentPointIndex);
+            } else {
+                // Show the quiz completed modal
+                const quizCompletedModal = new bootstrap.Modal(document.getElementById('quizCompletedModal'));
+                quizCompletedModal.show();
+            }
+        }
+
+        function checkAnswer(selectedIndex) {
+            const resultElement = document.getElementById('result');
+            const question = questions[points[currentPointIndex].questionIndex];
+            const correctIndex = question.correctIndex;
+
+            if (selectedIndex === correctIndex) {
+                resultElement.textContent = question.feedback;
+                resultElement.style.color = 'green';
+                setTimeout(() => {
+                    nextPoint(); // Move to the next point after 1.5 seconds
+                }, 1500);
+            } else {
+                resultElement.textContent = "Incorrect. Please try again.";
+                resultElement.style.color = 'red';
+            }
+        }
+
+        // Function to be called when the page loads
+        function onPageLoad() {
+            showQuizForPoint(currentPointIndex);
+        }
+
+        window.onload = onPageLoad;
+
+    </script>
 
 
 </body>
