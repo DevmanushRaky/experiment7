@@ -6,7 +6,10 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/css/bootstrap.min.css" rel="stylesheet"
         integrity="sha384-4bw+/aepP/YC94hEpVNVgiZdgIC5+VKNBQNGCHeKRQN+PtmoHDEXuppvnDJzQIu9" crossorigin="anonymous">
-    <title>Simulator 3</title>
+        <link rel="stylesheet"
+        href="https://cdnjs.cloudflare.com/ajax/libs/material-design-iconic-font/2.2.0/css/material-design-iconic-font.min.css">
+       
+        <title>Simulator 3</title>
     <style>
         a {
             text-decoration: none;
@@ -31,6 +34,8 @@
         .img-caption {
             margin-top: 5px;
             color: #722F37;
+            display: flex;
+            justify-content: center;
         }
 
         #submitBtn,#incrementBtn,#decrementBtn {
@@ -80,13 +85,13 @@
                 estimate for the fraction of pearlite?
             </h5>
             <div class="col-md-6">
-                <h5 class="img-caption">Microstructure</h5>
+                <h5 class="img-caption"> Optical Micrograph</h5>
                 <img src="s3img/Original.jpg" alt="Original Image" class="original-image" />
             </div>
 
             <div class="col-md-6">
 
-                <h5 class="img-caption">Predicted Threshold Microstructure</h5>
+                <h5 class="img-caption">Predicted Threshold Micrograph</h5>
                 <!-- Options -->
                 <div id="options">
                     <img src="s3img/OptionA.png" class="option-img" alt="Option A" data-option="A">
@@ -98,9 +103,9 @@
                     <img src="s3img/OptionG.png" class="option-img" alt="Option G" data-option="G">
                 </div>
                 <div class="d-flex justify-content-between m-2">
-                    <button type="button" class="btn btn-primary" id="decrementBtn">-</button>
+                    <button type="button" class="btn btn-primary" id="decrementBtn"><i class="zmdi zmdi-arrow-left"></i></button>
                     <input type="range" class="form-range" min="0" max="6" id="customRange2" value="0">
-                    <button type="button" class="btn btn-primary" id="incrementBtn">+</button>
+                    <button type="button" class="btn btn-primary" id="incrementBtn"><i class="zmdi zmdi-arrow-right"></i></button>
                 </div>
 
                 <!-- Option Details -->
